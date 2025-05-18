@@ -1,5 +1,20 @@
+
 (import-macros {: tx} :config.macros)
 
+;;-- See `:help telescope.builtin`
+;;vim.keymap.set('n', '<leader>/', function()
+;;  -- You can pass additional configuration to telescope to change theme, layout, etc.
+;;  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+;;    winblend = 10,
+;;    previewer = false,
+;;  })
+;;end, { desc = '[/] Fuzzily search in current buffer' })
+;;
+;;vim.keymap.set('n', '<C-p>', require('telescope.builtin').find_files, { desc = 'Search Files' })
+;;vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+;;vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+;;vim.keymap.set('n', '<C-f>', require('telescope.builtin').live_grep, { desc = 'Search by Grep' })
+;;vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 (tx "nvim-telescope/telescope.nvim"
   {:tag "0.1.8"
    :dependencies ["nvim-lua/plenary.nvim"
@@ -17,21 +32,21 @@
                (telescope.load_extension :fzf)
                (telescope.load_extension :undo)))
    :cmd "Telescope"
-   :keys [(tx "<leader>ff" "<CMD>Telescope git_files<CR>"
+   :keys [(tx "<C-p>" "<CMD>Telescope git_files<CR>"
             {:desc "Find files"})
-          (tx "<leader>fF" "<CMD>Telescope find_files hidden=true<CR>"
+          (tx "<C-h>" "<CMD>Telescope find_files hidden=true<CR>"
             {:desc "Find all files"})
-          (tx "<leader>fg" "<CMD>Telescope live_grep<CR>"
+          (tx "<C-l>" "<CMD>Telescope live_grep<CR>"
             {:desc "Find grep"})
-          (tx "<leader>fw" "<CMD>Telescope grep_string<CR>"
+          (tx "<leader>sw" "<CMD>Telescope grep_string<CR>"
             {:desc "Grep string under cursor"})
-          (tx "<leader>fb" "<CMD>Telescope buffers<CR>"
+          (tx "<leader><space>" "<CMD>Telescope buffers<CR>"
             {:desc "Find buffers"})
-          (tx "<leader>fh" "<CMD>Telescope help_tags<CR>"
+          (tx "<leader>sh" "<CMD>Telescope help_tags<CR>"
             {:desc "Find help tags"})
-          (tx "<leader>fc" "<CMD>Telescope commands<CR>"
+          (tx "<leader>cc" "<CMD>Telescope commands<CR>"
             {:desc "Find commands"})
-          (tx "<leader>fo" "<CMD>Telescope oldfiles<CR>"
+          (tx "<leader>?" "<CMD>Telescope oldfiles<CR>"
             {:desc "Find recent files"})
           (tx "<leader>fk" "<CMD>Telescope keymaps<CR>"
             {:desc "Find keymaps"})

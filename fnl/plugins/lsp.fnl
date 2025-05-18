@@ -133,33 +133,36 @@
            (tx "<leader>wr" vim.lsp.buf.remove_workspace_folder {:desc "[W]orkspace [R]emove Folder"})
            (tx "<leader>wl" (fn [] (print (vim.inspect (vim.lsp.buf.list_worspace_folders)))) {:desc "[W]orkspace [L]ist Folders"})
 	   ]
-    :config
-    (fn []
-      (let [lspconfig (require :lspconfig)
-            caps ((. (require :cmp_nvim_lsp) :default_capabilities))
-            mlsp (require :mason-lspconfig)]
-        (lspconfig.gleam.setup {})
-        (mlsp.setup_handlers
-          (tx (fn [server-name]
-                ((. (require :lspconfig) server-name :setup)
-                 {:capabilities caps}))
-              {:tailwindcss
-               (fn []
-                 ;; https://github.com/tailwindlabs/tailwindcss/discussions/7554#discussioncomment-12991596
-                 ;; https://github.com/tailwindlabs/tailwindcss-intellisense/issues/400#issuecomment-2336568169
-                 ;; https://github.com/tailwindlabs/tailwindcss-intellisense/issues/400#issuecomment-2664427180
-                 (lspconfig.tailwindcss.setup
-                   {:settings
-                    {:tailwindCSS
-                     {:experimental
-                      {:classRegex [["\\[:[^.\\s]*((?:\\.[^.\\s\\]]*)+)[\\s\\]]" "\\.([^.]*)"]
-                                    ["\\:(\\.[^\\s#]+(?:\\.[^\\s#]+)*)" "\\.([^\\.\\s#]+)"]
-                                    ["class\\s+(\\:[^\\s\\}]*)[\\s\\}]" "[\\:.]([^.]*)"]
-                                    ["class\\s+(\"[^\\}\"]*)\"" "[\"\\s]([^\\s\"]*)"]
-                                    ["class\\s+\\[([\\s\\S]*)\\]" "[\"\\:]([^\\s\"]*)[\"]?"]
-                                    ["class\\s+'\\[([\\s\\S]*)\\]" "([^\\s]*)?"]]}
-                      :includeLanguages {:clojure "html"
-                                         :clojurescript "html"}}}}))}))))})
+    ; :config
+    ; (fn []
+    ;   (let [lspconfig (require :lspconfig)
+    ;         caps ((. (require :cmp_nvim_lsp) :default_capabilities))
+    ;         mlsp (require :mason-lspconfig)]
+    ;     (lspconfig.gleam.setup {})
+    ;     (mlsp.setup_handlers
+    ;       (tx (fn [server-name]
+    ;             ((. (require :lspconfig) server-name :setup)
+    ;              {:capabilities caps}))
+    ;           ; {:tailwindcss
+    ;           ;  (fn []
+    ;           ;    ;; https://github.com/tailwindlabs/tailwindcss/discussions/7554#discussioncomment-12991596
+    ;           ;    ;; https://github.com/tailwindlabs/tailwindcss-intellisense/issues/400#issuecomment-2336568169
+    ;           ;    ;; https://github.com/tailwindlabs/tailwindcss-intellisense/issues/400#issuecomment-2664427180
+    ;           ;    (lspconfig.tailwindcss.setup
+    ;           ;      {:settings
+    ;           ;       {:tailwindCSS
+    ;           ;        {:experimental
+    ;           ;         {:classRegex [["\\[:[^.\\s]*((?:\\.[^.\\s\\]]*)+)[\\s\\]]" "\\.([^.]*)"]
+    ;           ;                       ["\\:(\\.[^\\s#]+(?:\\.[^\\s#]+)*)" "\\.([^\\.\\s#]+)"]
+    ;           ;                       ["class\\s+(\\:[^\\s\\}]*)[\\s\\}]" "[\\:.]([^.]*)"]
+    ;           ;                       ["class\\s+(\"[^\\}\"]*)\"" "[\"\\s]([^\\s\"]*)"]
+    ;           ;                       ["class\\s+\\[([\\s\\S]*)\\]" "[\"\\:]([^\\s\"]*)[\"]?"]
+    ;           ;                       ["class\\s+'\\[([\\s\\S]*)\\]" "([^\\s]*)?"]]}
+    ;           ;         :includeLanguages {:clojure "html"
+    ;           ;                            :clojurescript "html"}}}}))}
+    ;            )))
+    ;   ; )
+    })
 
  (tx "RubixDev/mason-update-all"
    {:cmd "MasonUpdateAll"
