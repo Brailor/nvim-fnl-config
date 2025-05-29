@@ -118,8 +118,8 @@
            (tx "<leader>lr" "<CMD>Telescope lsp_references<CR>" {:desc "LSP references"})
            (tx "<leader>li" "<CMD>Telescope lsp_incoming_calls<CR>" {:desc "LSP incoming calls"})
            (tx "<leader>lo" "<CMD>Telescope lsp_outgoing_calls<CR>" {:desc "LSP outgoing calls"})
-           (tx "<leader>ls" "<CMD>Telescope lsp_document_symbols<CR>" {:desc "LSP document symbols"})
-           (tx "<leader>lS" "<CMD>Telescope lsp_workspace_symbols<CR>" {:desc "LSP workspace symbols"})
+           (tx "<leader>ds" "<CMD>Telescope lsp_document_symbols<CR>" {:desc "LSP document symbols"})
+           (tx "<leader>dS" "<CMD>Telescope lsp_workspace_symbols<CR>" {:desc "LSP workspace symbols"})
            (tx "<leader>lx" "<CMD>Telescope lsp_dynamic_workspace_symbols<CR>" {:desc "LSP dynamic workspace symbols (all workspaces)"})
            (tx "<leader>laf" (fn [] ((. (require :conform) :format))) {:desc "LSP format"})
 	   (tx "<leader>ca" vim.lsp.buf.code_action {:desc "[C]ode [A]ction"})
@@ -133,35 +133,6 @@
            (tx "<leader>wr" vim.lsp.buf.remove_workspace_folder {:desc "[W]orkspace [R]emove Folder"})
            (tx "<leader>wl" (fn [] (print (vim.inspect (vim.lsp.buf.list_worspace_folders)))) {:desc "[W]orkspace [L]ist Folders"})
 	   ]
-    ; :config
-    ; (fn []
-    ;   (let [lspconfig (require :lspconfig)
-    ;         caps ((. (require :cmp_nvim_lsp) :default_capabilities))
-    ;         mlsp (require :mason-lspconfig)]
-    ;     (lspconfig.gleam.setup {})
-    ;     (mlsp.setup_handlers
-    ;       (tx (fn [server-name]
-    ;             ((. (require :lspconfig) server-name :setup)
-    ;              {:capabilities caps}))
-    ;           ; {:tailwindcss
-    ;           ;  (fn []
-    ;           ;    ;; https://github.com/tailwindlabs/tailwindcss/discussions/7554#discussioncomment-12991596
-    ;           ;    ;; https://github.com/tailwindlabs/tailwindcss-intellisense/issues/400#issuecomment-2336568169
-    ;           ;    ;; https://github.com/tailwindlabs/tailwindcss-intellisense/issues/400#issuecomment-2664427180
-    ;           ;    (lspconfig.tailwindcss.setup
-    ;           ;      {:settings
-    ;           ;       {:tailwindCSS
-    ;           ;        {:experimental
-    ;           ;         {:classRegex [["\\[:[^.\\s]*((?:\\.[^.\\s\\]]*)+)[\\s\\]]" "\\.([^.]*)"]
-    ;           ;                       ["\\:(\\.[^\\s#]+(?:\\.[^\\s#]+)*)" "\\.([^\\.\\s#]+)"]
-    ;           ;                       ["class\\s+(\\:[^\\s\\}]*)[\\s\\}]" "[\\:.]([^.]*)"]
-    ;           ;                       ["class\\s+(\"[^\\}\"]*)\"" "[\"\\s]([^\\s\"]*)"]
-    ;           ;                       ["class\\s+\\[([\\s\\S]*)\\]" "[\"\\:]([^\\s\"]*)[\"]?"]
-    ;           ;                       ["class\\s+'\\[([\\s\\S]*)\\]" "([^\\s]*)?"]]}
-    ;           ;         :includeLanguages {:clojure "html"
-    ;           ;                            :clojurescript "html"}}}}))}
-    ;            )))
-    ;   ; )
     })
 
  (tx "RubixDev/mason-update-all"
